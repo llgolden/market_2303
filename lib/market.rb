@@ -29,20 +29,28 @@ class Market
   end
 
   def sorted_item_list
-    
+    items_list = []
+    item_names = []
+    @vendors.each do |vendor|
+      items_list << vendor.inventory.keys
+      items_list.flatten
+      items_list.each do |item|
+        item_names << item.names
+        require 'pry'; binding.pry
+
+      end
+    end
   end
-# An array of the names of all items the Vendors have in stock, sorted alphabetically. This list should not include any duplicate items.
+# This method requires nested iteration. If I had more time I would have completed the method by iterating through the inventory hash for each vendor and pulled out all of the item names. Once I had an array of all the item names I would have removed the duplicates (using .uniq) and then sorted the list alphabetically 
 
   def total_inventory
 
   end
-#it should return a hash with items as keys and hashes as values - this sub-hash should have two key/value pairs: quantity pointing to total inventory for that item and vendors pointing to an array of the vendors that sell that item. 
-
+# If I had more time I would have used the sorted_item_list to create the keys for the hash then I would have iterated through each vendor's inventory to pull out the quantity of each item in stock and each vendor name that sells each item to create the sub-hash values. 
 
   def overstocked_items
 
   end
-  
-# An array of Item objects that are overstocked. An item is overstocked if it is sold by more than 1 vendor AND the total quantity is greater than 50.
+# If I had more time, I would have iterated through the total_inventory hash to identify items that are sold by more than one vendor and (&&) have a quantity > 50
 
 end #final

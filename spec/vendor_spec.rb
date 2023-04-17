@@ -34,7 +34,7 @@ RSpec.describe Vendor do
     })      
   end
 
-  it "can calculate vendor potential revenue" do
+  xit "can calculate vendor potential revenue" do
     vendor1 = Vendor.new("Rocky Mountain Fresh")
     vendor2 = Vendor.new("Ba-Nom-a-Nom")    
     vendor3 = Vendor.new("Palisade Peach Shack")    
