@@ -28,16 +28,21 @@ class Market
     vendor_sells
   end
 
-  # def potential_revenue
+  def sorted_item_list
+    
+  end
+# An array of the names of all items the Vendors have in stock, sorted alphabetically. This list should not include any duplicate items.
 
-  # end
+  def total_inventory
+
+  end
+#it should return a hash with items as keys and hashes as values - this sub-hash should have two key/value pairs: quantity pointing to total inventory for that item and vendors pointing to an array of the vendors that sell that item. 
+
+
+  def overstocked_items
+
+  end
+  
+# An array of Item objects that are overstocked. An item is overstocked if it is sold by more than 1 vendor AND the total quantity is greater than 50.
 
 end #final
-
-
-# A Vendor will be able to calculate their `potential_revenue` - the sum of all their items' price * quantity.
-
-
-
-# Additionally, the Market should have a method called `vendors_that_sell` that takes an argument of an item. It will return a list of Vendors that have that item in stock.
-
