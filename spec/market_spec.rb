@@ -157,5 +157,4 @@ RSpec.describe Market do
 
     expect(market.overstocked_items).to eq(["Peach"])
   end
-
-end #final
+end

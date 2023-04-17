@@ -21,5 +21,4 @@ class Vendor
       rev = (item_price * quantity).sum
     end
   end
-
-end #final
+end 

@@ -52,5 +52,4 @@ class Market
 
   end
 # If I had more time, I would have iterated through the total_inventory hash to identify items that are sold by more than one vendor and (&&) have a quantity > 50
-
-end #final
+end 
