@@ -35,5 +35,3 @@ RSpec.describe Vendor do
   end
 
 end #final
-
-# Any item not in stock should return `0` by default.
