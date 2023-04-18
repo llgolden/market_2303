@@ -1,10 +1,17 @@
+require 'date'
 class Market
-  attr_reader :name, :vendors
+  attr_reader :name, :vendors, :date
 
   def initialize(name)
     @name = name
     @vendors = []
+    @date = Date.today 
   end
+
+  # def date
+  #   @date.strftime("%d/%m/%Y")
+  # end
+  # ^ this will reformat the date how we want - if the stub was not there in spec line 13
 
   def add_vendor(vendor)
     @vendors << vendor
@@ -37,21 +44,6 @@ class Market
     end.uniq.sort
   end
 
-  # def sorted_item_list
-  #   items_list = []
-  #   item_names = []
-  #   @vendors.each do |vendor|
-  #     items_list << vendor.inventory.keys
-  #     items_list.flatten
-  #     items_list.each do |item|
-  #       item_names << item.names
-  #       require 'pry'; binding.pry
-
-  #     end
-  #   end
-  # end
-# This method requires nested iteration. If I had more time I would have completed the method by iterating through the inventory hash for each vendor and pulled out all of the item names. Once I had an array of all the item names I would have removed the duplicates (using .uniq) and then sorted the list alphabetically 
-
 # kat answer:
   def total_inventory
     total = {}
@@ -69,7 +61,6 @@ class Market
     end
     total
   end
-# If I had more time I would have used the sorted_item_list to create the keys for the hash then I would have iterated through each vendor's inventory to pull out the quantity of each item in stock and each vendor name that sells each item to create the sub-hash values. 
 
 # kat answer:
   def overstocked_items
@@ -84,5 +75,21 @@ class Market
   #   end
   #     overstocked.keys
   # end
-# If I had more time, I would have iterated through the total_inventory hash to identify items that are sold by more than one vendor and (&&) have a quantity > 50
+
+  def sell(item, quantity)
+    return false if total_inventory[item][:quantity] < quantity
+
+    @vendors.each do |vendor|
+      if vendor.check_stock(item) > quantity
+        vendor.inventory[item] -= quantity
+        break 
+      else 
+        quantity -= vendor.inventory[item]
+        vendor.inventory[item] = 0
+      end
+    end
+    return true
+  end
+
+
 end 
