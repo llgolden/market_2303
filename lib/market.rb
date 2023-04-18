@@ -54,13 +54,35 @@ class Market
 
 # kat answer:
   def total_inventory
-
+    total = {}
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, quantity|
+        if total[item] 
+          total[item][:quantity] += quantity
+        else 
+          total[item] = {
+            quantity: quantity,
+            vendors: vendors_that_sell(item)
+          }
+        end
+      end
+    end
+    total
   end
 # If I had more time I would have used the sorted_item_list to create the keys for the hash then I would have iterated through each vendor's inventory to pull out the quantity of each item in stock and each vendor name that sells each item to create the sub-hash values. 
 
 # kat answer:
   def overstocked_items
-
+    total_inventory.select do |item, info|
+      info[:quantity] > 50 && info [:vendors].length > 1
+    end.keys
   end
+
+  # def overstocked_items
+  #   overstocked = total_inventory.select do |item, info|
+  #     info[:quantity] > 50 && info [:vendors].length > 1
+  #   end
+  #     overstocked.keys
+  # end
 # If I had more time, I would have iterated through the total_inventory hash to identify items that are sold by more than one vendor and (&&) have a quantity > 50
 end 

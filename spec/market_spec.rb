@@ -91,7 +91,7 @@ RSpec.describe Market do
     expect(market.sorted_item_list).to eq(["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"])
   end
 
-it "can provide a list of all items sold" do
+it "can calculate total inventory" do
     market = Market.new("South Pearl Street Farmers Market")
 
     vendor1 = Vendor.new("Rocky Mountain Fresh")
@@ -113,27 +113,45 @@ it "can provide a list of all items sold" do
     market.add_vendor(vendor2)    
     market.add_vendor(vendor3)
 
+    # expect(market.total_inventory).to eq({
+    #   "Banana Nice Cream" => {
+    #     quantity => 50,
+    #     vendors => ["Ba-Nom-a-Nom"]
+    #   }, 
+    #   "Peach" => {
+    #     quantity => 100,
+    #     vendors => ["Rocky Mountain Fresh", "Palisade Peach Shack"]
+    #   },  
+    #   "Peach-Raspberry Nice Cream" => {
+    #     quantity => 25,
+    #     vendors => ["Ba-Nom-a-Nom"]
+    #   },   
+    #   "Tomato" => {
+    #     quantity => 7,
+    #     vendors => ["Rocky Mountain Fresh"]
+    #   }
+    # })
     expect(market.total_inventory).to eq({
-      "Banana Nice Cream" => {
-        quantity => 50,
-        vendors => ["Ba-Nom-a-Nom"]
+      item1 => {
+        quantity: 100, 
+        vendors: [vendor1, vendor3]
       }, 
-      "Peach" => {
-        quantity => 100,
-        vendors => ["Rocky Mountain Fresh", "Palisade Peach Shack"]
-      },  
-      "Peach-Raspberry Nice Cream" => {
-        quantity => 25,
-        vendors => ["Ba-Nom-a-Nom"]
-      },   
-      "Tomato" => {
-        quantity => 7,
-        vendors => ["Rocky Mountain Fresh"]
+      item2 => {
+        quantity: 7, 
+        vendors: [vendor1]
+      },
+      item3 => {
+        quantity: 25, 
+        vendors: [vendor2]
+      },
+      item4 => {
+        quantity: 50, 
+        vendors: [vendor2]
       }
     })
   end
 
-  xit "can provide a list of overstocked items" do
+  it "can provide a list of overstocked items" do
     market = Market.new("South Pearl Street Farmers Market")
 
     vendor1 = Vendor.new("Rocky Mountain Fresh")
@@ -155,6 +173,6 @@ it "can provide a list of all items sold" do
     market.add_vendor(vendor2)    
     market.add_vendor(vendor3)
 
-    expect(market.overstocked_items).to eq(["Peach"])
+    expect(market.overstocked_items).to eq([item1])
   end
 end
