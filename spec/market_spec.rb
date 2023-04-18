@@ -67,7 +67,7 @@ RSpec.describe Market do
     expect(market.vendors_that_sell(item4)).to eq([vendor2])
   end
 
-  xit "can provide a list of items in stock" do
+  it "can provide a list of items in stock" do
     market = Market.new("South Pearl Street Farmers Market")
 
     vendor1 = Vendor.new("Rocky Mountain Fresh")
@@ -91,7 +91,7 @@ RSpec.describe Market do
     expect(market.sorted_item_list).to eq(["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"])
   end
 
-  xit "can provide a list of all items sold" do
+it "can provide a list of all items sold" do
     market = Market.new("South Pearl Street Farmers Market")
 
     vendor1 = Vendor.new("Rocky Mountain Fresh")
